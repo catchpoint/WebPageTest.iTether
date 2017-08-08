@@ -9,21 +9,26 @@
 import NetworkExtension
 
 class PacketTunnelProvider: NEPacketTunnelProvider {
+
+  func log(_ message: String) {
+    NSLog("iTether (tunnel): \(message)")
+  }
+
   override func startTunnel(options: [String : NSObject]?, completionHandler: @escaping (Error?) -> Void) {
     // Add code here to start the process of connecting the tunnel.
-    print("startTunnel")
+    self.log("startTunnel")
     completionHandler(nil)
   }
     
   override func stopTunnel(with reason: NEProviderStopReason, completionHandler: @escaping () -> Void) {
     // Add code here to start the process of stopping the tunnel.
-    print("stopTunnel")
+    self.log("stopTunnel")
     completionHandler()
   }
     
   override func handleAppMessage(_ messageData: Data, completionHandler: ((Data?) -> Void)?) {
     // Add code here to handle the message.
-    print("handleAppMessage")
+    self.log("handleAppMessage")
     if let handler = completionHandler {
       handler(messageData)
     }
@@ -31,12 +36,12 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     
   override func sleep(completionHandler: @escaping () -> Void) {
     // Add code here to get ready to sleep.
-    print("sleep")
+    self.log("sleep")
     completionHandler()
   }
     
   override func wake() {
-    print("wake")
+    self.log("wake")
     // Add code here to wake up.
   }
 }
